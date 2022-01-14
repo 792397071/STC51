@@ -1,0 +1,53 @@
+#include <REGX51.H>
+#include <INTRINS.H>
+void Delay1ms(unsigned int xms)		//@12MHz
+{
+	unsigned char i, j;
+	while(xms){
+	i = 2;
+	j = 239;
+	do
+	{
+		while (--j);
+	} while (--i);
+	xms--;
+}
+}
+void main()
+{
+for(;;)
+	{
+	P2_0=0;
+	Delay1ms(1111);
+	P2_1=0;	
+	Delay1ms(1111);	
+	P2_2=0;
+	Delay1ms(1111);
+	P2_3=0;	
+	Delay1ms(1111);	
+	P2_4=0;
+	Delay1ms(1111);
+	P2_5=0;	
+	Delay1ms(1111);	
+	P2_6=0;
+	Delay1ms(1111);
+	P2_7=0;	
+	Delay1ms(1111);
+	P2_0=1;
+	Delay1ms(1111);
+	P2_1=1;	
+	Delay1ms(1111);	
+	P2_2=1;
+	Delay1ms(1111);
+	P2_3=1;	
+	Delay1ms(1111);	
+	P2_4=1;
+	Delay1ms(1111);
+	P2_5=1;	
+	Delay1ms(1111);	
+	P2_6=1;
+	Delay1ms(1111);
+	P2_7=1;	
+	Delay1ms(1111);				
+	}
+}
