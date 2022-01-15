@@ -1,0 +1,52 @@
+#include <REGX51.H>
+unsigned char smgnum[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,
+				0x7f,0x6f};
+void delay(xms)		//@12.000MHz
+{
+	while(xms--){
+		unsigned char i, j;
+
+	i = 2;
+	j = 239;
+	do
+	{
+		while (--j);
+	} while (--i);}
+}
+
+void smg(unsigned char wz,num)
+{
+	switch(wz)
+	{
+		case 1:P2_4=1;P2_3=1;P2_2=1;break;
+		case 2:P2_4=1;P2_3=1;P2_2=0;break;
+		case 3:P2_4=1;P2_3=0;P2_2=1;break;	
+	    case 4:P2_4=1;P2_3=0;P2_2=0;break;
+		case 5:P2_4=0;P2_3=1;P2_2=1;break;
+		case 6:P2_4=0;P2_3=1;P2_2=0;break;
+		case 7:P2_4=0;P2_3=0;P2_2=1;break;
+		case 8:P2_4=0;P2_3=0;P2_2=0;break;
+	
+	
+	}
+P0=smgnum[num];
+	delay(1);
+	P0=0x00;
+
+}
+
+void main()
+{
+
+while(1)
+{
+smg(2,2);
+
+smg(3,2);
+
+smg(1,2);
+
+}
+
+
+}
