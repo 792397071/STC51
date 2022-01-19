@@ -1,0 +1,53 @@
+#include <REGX51.H>
+#include "delay.h"
+#include "LCD1602.h"
+#include "MatrixKey.h"
+
+unsigned int PassWord;
+unsigned char KeyN;Count;
+
+void main()
+{
+	LCD_Init();
+	LCD_ShowString(1,1,"Password:");
+	while(1)
+	{
+		KeyN=MatrixKey();
+		
+		if(KeyN)
+		{
+			if(KeyN<=10)
+				{	if(Count<4)   //如果输入次数
+					{
+					PassWord*=10;     //密码左移一位
+					PassWord+=KeyN%10; 	//获取一位密码
+					Count++;
+					}		
+				}
+				LCD_ShowNum(2,1,PassWord,4); //更新显示
+			if(KeyN==11)					//确认
+			{
+		      if(PassWord==1111)
+			      {
+					LCD_ShowString(1,14,"OK ");
+					Count=0;
+					PassWord=0;
+					LCD_ShowNum(2,1,PassWord,4);
+				  }
+			  else 
+			{
+			 LCD_ShowString(1,14,"ERR");			
+			 Count=0;
+			 PassWord=0;
+			 LCD_ShowNum(2,1,PassWord,4);
+			 }
+			}
+			if(KeyN==12)
+			{
+			 Count=0;
+			 PassWord=0;
+			 LCD_ShowNum(2,1,PassWord,4);
+			}
+		}
+	}
+}
