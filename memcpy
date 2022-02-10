@@ -1,0 +1,25 @@
+#include <assert.h>
+
+struct S
+{
+	char name[20];
+	int age;
+};
+
+
+void* my_memcpy(void* dest, const void* src, size_t num)
+{
+	void* ret = dest;
+	assert(dest != NULL);
+	assert(src != NULL);
+
+	while (num--)
+	{
+		*(char*)dest = *(char*)src;
+		++(char*)dest;
+		++(char*)src;
+	}
+
+	return ret;
+}
+//
